@@ -160,12 +160,6 @@ Algorithms like **FastICA** maximize the non-Gaussianity (e.g., kurtosis) of \( 
 
 ---
 
-# Non-Machine Learning Algorithms for EEG Processing (Part 2)
-
-This document continues the discussion on traditional EEG signal processing methods. It covers dimensionality reduction, adaptive decomposition, connectivity analysis, source localization, and nonlinear dynamics.
-
----
-
 ## 7. Principal Component Analysis (PCA)
 
 ### Objective
@@ -360,14 +354,35 @@ These measures assess the regularity and unpredictability of a time series.
 
 ---
 
-## Conclusion
+## Summary: Non-Machine Learning Algorithms for EEG Processing
 
-This document has covered:
+### 1. Spectral and Time-Frequency Analysis
+- **Fourier Transform (FT):** Decomposes EEG into frequency components.
+- **Short-Time Fourier Transform (STFT):** Provides time-frequency representation for non-stationary signals.
+- **Wavelet Transform (WT):** Multi-resolution analysis capturing transient EEG features.
 
-- **Dimensionality Reduction:** PCA.
-- **Adaptive Decomposition:** EMD and HHT.
-- **Connectivity Analysis:** Cross-Correlation, Coherence, and Phase Synchronization.
-- **Source Localization:** Dipole Fitting and Beamforming.
-- **Nonlinear Dynamics:** Chaos measures like Lyapunov exponents, fractal dimensions, and entropy measures.
+### 2. Filtering and Modeling
+- **Digital Filtering:** Isolates EEG frequency bands and removes noise.
+- **Autoregressive (AR) Modeling:** Predicts EEG signals and improves spectral resolution.
 
-Understanding these techniques will help you effectively process EEG data.
+### 3. Blind Source Separation and Dimensionality Reduction
+- **Independent Component Analysis (ICA):** Separates EEG into independent sources, useful for artifact removal.
+- **Principal Component Analysis (PCA):** Reduces dimensionality and extracts major EEG variance patterns.
+
+### 4. Adaptive Decomposition Methods
+- **Empirical Mode Decomposition (EMD):** Decomposes EEG into intrinsic mode functions (IMFs).
+- **Hilbert-Huang Transform (HHT):** Extracts instantaneous frequency and amplitude features.
+
+### 5. Functional Connectivity and Synchronization Analysis
+- **Cross-Correlation:** Measures similarity and time-lag relationships between EEG signals.
+- **Coherence Analysis:** Evaluates frequency-domain connectivity between brain regions.
+- **Phase Synchronization (PLV):** Quantifies phase coupling in EEG signals.
+
+### 6. Source Localization
+- **Dipole Fitting:** Estimates EEG source location and orientation.
+- **Beamforming (LCMV):** Uses spatial filtering to enhance EEG source estimation.
+
+### 7. Nonlinear Dynamics and Chaos Analysis
+- **Lyapunov Exponents:** Measures signal predictability and chaotic behavior.
+- **Fractal Dimension (Correlation Dimension):** Assesses EEG complexity.
+- **Entropy Measures (ApEn, SampEn):** Quantifies EEG irregularity and unpredictability.
