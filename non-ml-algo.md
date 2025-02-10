@@ -17,33 +17,25 @@ The Fourier Transform (FT) converts a time-domain signal into its frequency-doma
 - **Continuous Fourier Transform:**
 
 $$
-
   X(f) = \int_{-\infty}^{\infty} x(t) \, e^{-j 2\pi f t} \, dt
-  
 $$
 
 - **Inverse Fourier Transform:**
 
 $$
-
   x(t) = \int_{-\infty}^{\infty} X(f) \, e^{j 2\pi f t} \, df
-  
 $$
 
 - **Discrete Fourier Transform (DFT):**
 
 $$
-
   X[k] = \sum_{n=0}^{N-1} x[n] \, e^{-j \frac{2\pi}{N} k n}, \quad k = 0, 1, \dots, N-1
-  
 $$
 
 - **Inverse DFT:**
   
 $$
-
   x[n] = \frac{1}{N} \sum_{k=0}^{N-1} X[k] \, e^{j \frac{2\pi}{N} k n}
-  
 $$
 
 ---
@@ -59,9 +51,7 @@ The STFT applies the Fourier Transform over short, sliding windows of the signal
 ### Mathematical Formulation
 
 $$
-
 X(t, f) = \int_{-\infty}^{\infty} x(\tau) \, w(\tau - t) \, e^{-j 2\pi f \tau} \, d\tau
-
 $$
 
 where:
@@ -82,9 +72,7 @@ Wavelet Transforms use localized waveforms (wavelets) rather than infinite-durat
 - **Continuous Wavelet Transform (CWT):**
 
 $$
-
   W(a, b) = \frac{1}{\sqrt{|a|}} \int_{-\infty}^{\infty} x(t) \, \psi^*\!\left(\frac{t - b}{a}\right) dt
-  
 $$
 
   where:
@@ -111,9 +99,7 @@ Digital filters (e.g., low-pass, high-pass, band-pass, band-stop) are designed t
 - **General IIR Filter Difference Equation:**
 
 $$
-
   y[n] = \sum_{k=0}^{M} b_k \, x[n-k] - \sum_{k=1}^{N} a_k \, y[n-k]
-  
 $$
 
   where:
@@ -126,9 +112,7 @@ $$
   A Butterworth filter has a maximally flat frequency response in the passband. Its transfer function (in the Laplace domain) is given by:
 
 $$
-
   H(s) = \frac{1}{\sqrt{1 + \left(\frac{s}{\omega_c}\right)^{2n}}}
-  
 $$
 
   where:
@@ -148,9 +132,7 @@ An AR model assumes that each EEG sample is a linear combination of previous sam
 ### Mathematical Formulation
 
 $$
-
 x(t) = \sum_{k=1}^{p} a_k \, x(t-k) + e(t)
-
 $$
 
 where:
@@ -161,9 +143,7 @@ where:
 The coefficients can be estimated using the Yule-Walker equations:
 
 $$
-
 r(m) = \sum_{k=1}^{p} a_k \, r(m-k) + \sigma_e^2 \, \delta(m)
-
 $$
 
 with \( r(m) \) being the autocorrelation function and \( \delta(m) \) the Kronecker delta.
@@ -183,9 +163,7 @@ Given:
 
 
 $$
-
 \mathbf{x} = \mathbf{A} \, \mathbf{s}
-
 $$
 
 
@@ -198,9 +176,7 @@ The goal is to find the unmixing matrix \( \mathbf{W} \) such that:
 
 
 $$
-
 \mathbf{s} = \mathbf{W} \, \mathbf{x}
-
 $$
 
 
@@ -219,36 +195,30 @@ PCA transforms EEG data into a new coordinate system where the axes (principal c
 ### Mathematical Formulation
 
 1. **Compute the Covariance Matrix:**
-   
+
+$$
+\mathbf{C} = \frac{1}{N-1} \mathbf{X}^\top \mathbf{X}
 $$
 
-   \mathbf{C} = \frac{1}{N-1} \mathbf{X}^\top \mathbf{X}
-   
-$$
-
-   where \( \mathbf{X} \) is the zero-mean data matrix.
+where \( \mathbf{X} \) is the zero-mean data matrix.
 
 2. **Eigenvalue Decomposition:**
-   
+
+$$
+\mathbf{C} \, \mathbf{p} = \lambda \, \mathbf{p}   
 $$
 
-   \mathbf{C} \, \mathbf{p} = \lambda \, \mathbf{p}
-   
-$$
-
-   where:
-   - \( \lambda \) are the eigenvalues,
-   - \( \mathbf{p} \) are the corresponding eigenvectors (principal components).
+  where:
+  - \( \lambda \) are the eigenvalues,
+  - \( \mathbf{p} \) are the corresponding eigenvectors (principal components).
 
 3. **Projection:**
-   
+
+$$
+\mathbf{T} = \mathbf{X} \, \mathbf{P}
 $$
 
-   \mathbf{T} = \mathbf{X} \, \mathbf{P}
-   
-$$
-
-   where \( \mathbf{T} \) are the transformed (projected) data.
+where \( \mathbf{T} \) are the transformed (projected) data.
 
 ---
 
@@ -265,19 +235,15 @@ EMD iteratively extracts oscillatory modes (IMFs) from a signal by identifying l
 1. **Identify Local Extrema:** Find all local maxima and minima in \( x(t) \).
 2. **Envelope Construction:** Interpolate the maxima to form the upper envelope \( e_{\text{max}}(t) \) and the minima for the lower envelope \( e_{\text{min}}(t) \).
 3. **Compute the Mean:**
-   
+
+$$
+m(t) = \frac{e_{\text{max}}(t) + e_{\text{min}}(t)}{2}
 $$
 
-   m(t) = \frac{e_{\text{max}}(t) + e_{\text{min}}(t)}{2}
-   
-$$
+1. **Extract the Detail (Candidate IMF):**
 
-4. **Extract the Detail (Candidate IMF):**
-   
 $$
-
-   h(t) = x(t) - m(t)
-   
+h(t) = x(t) - m(t)
 $$
 
 5. **Check IMF Criteria:** If \( h(t) \) satisfies the criteria, designate \( h(t) \) as an IMF. Otherwise, repeat the sifting process.
@@ -296,25 +262,21 @@ HHT combines EMD with the Hilbert Transform to obtain instantaneous frequency an
 ### Mathematical Formulation
 
 - **Hilbert Transform:**
-  
-$$
 
-  \hat{x}(t) = \frac{1}{\pi} \, \text{p.v.} \int_{-\infty}^{\infty} \frac{x(\tau)}{t - \tau} \, d\tau
-  
+$$
+\hat{x}(t) = \frac{1}{\pi} \, \text{p.v.} \int_{-\infty}^{\infty} \frac{x(\tau)}{t - \tau} \, d\tau
 $$
 
 
 - **Analytic Signal:**
-  
+
+$$
+z(t) = x(t) + j \, \hat{x}(t) = A(t) \, e^{j\phi(t)}
 $$
 
-  z(t) = x(t) + j \, \hat{x}(t) = A(t) \, e^{j\phi(t)}
-  
-$$
-
-  where:
-  - \( A(t) \) is the instantaneous amplitude,
-  - \( \phi(t) \) is the instantaneous phase.
+where:
+- \( A(t) \) is the instantaneous amplitude,
+- \( \phi(t) \) is the instantaneous phase.
 
 ---
 
@@ -326,20 +288,16 @@ Assess the similarity and time-lag relationships between two EEG signals.
 ### Mathematical Formulation
 
 - **Continuous Form:**
-  
-$$
 
-  R_{xy}(\tau) = \int_{-\infty}^{\infty} x(t) \, y(t+\tau) \, dt
-  
+$$
+R_{xy}(\tau) = \int_{-\infty}^{\infty} x(t) \, y(t+\tau) \, dt
 $$
 
 
 - **Discrete Form:**
-  
-$$
 
-  R_{xy}[m] = \sum_{n} x[n] \, y[n+m]
-  
+$$
+R_{xy}[m] = \sum_{n} x[n] \, y[n+m]
 $$
 
 
@@ -353,9 +311,7 @@ Measure the frequency-domain correlation (functional connectivity) between two E
 ### Mathematical Formulation
 
 $$
-
 C_{xy}(f) = \frac{|P_{xy}(f)|^2}{P_{xx}(f) \, P_{yy}(f)}
-
 $$
 
 where:
@@ -374,9 +330,7 @@ Estimate the location, orientation, and strength of equivalent current dipoles g
 ### Mathematical Formulation
 
 $$
-
 \mathbf{V} = \mathbf{L} \, \mathbf{J} + \text{noise}
-
 $$
 
 where:
@@ -396,9 +350,7 @@ Estimate activity from a specific brain location by applying spatial filters tha
 A common beamformer is the Linearly Constrained Minimum Variance (LCMV) beamformer:
 
 $$
-
 \mathbf{w} = \frac{\mathbf{C}^{-1}\mathbf{L}}{\mathbf{L}^\top \mathbf{C}^{-1} \mathbf{L}}
-
 $$
 
 where:
@@ -418,9 +370,7 @@ Quantify the degree of phase coupling between EEG signals.
 A common measure is the **Phase Locking Value (PLV):**
 
 $$
-
 \text{PLV} = \left|\frac{1}{N} \sum_{n=1}^{N} e^{j \Delta \phi(n)}\right|
-
 $$
 
 where:
@@ -443,9 +393,7 @@ Measure the rate at which nearby trajectories in a reconstructed phase space div
 Estimates the dimensionality of the signal’s attractor. The Grassberger–Procaccia algorithm relates the correlation sum \( C(r) \) to the radius \( r \) by:
 
 $$
-
 C(r) \sim r^{D_2}
-
 $$
 
 where \( D_2 \) is the correlation dimension.
