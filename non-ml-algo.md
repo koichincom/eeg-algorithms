@@ -15,11 +15,13 @@ The Fourier Transform (FT) converts a time-domain signal into its frequency-doma
 ### Mathematical Formulation
 
 - **Continuous Fourier Transform:**
+
   $$
   X(f) = \int_{-\infty}^{\infty} x(t) \, e^{-j 2\pi f t} \, dt
   $$
   
 - **Inverse Fourier Transform:**
+
   $$
   x(t) = \int_{-\infty}^{\infty} X(f) \, e^{j 2\pi f t} \, df
   $$
